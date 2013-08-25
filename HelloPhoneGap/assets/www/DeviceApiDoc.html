@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="prettyCode/prettify.css" rel="stylesheet" />
+    <script src="prettyCode/prettify.js"></script>
+    <script src="prettyCode/lang-css.js"></script>
+    <script src="prettyCode/lang-basic.js"></script>
+
+</head>
+<body onload="prettyPrint(); adjustHeightInParent()">
+    <div class="wrapper">
+        <div class="title">
+            <h1>PhoneGap device API说明</h1>
+        </div>
+        <div class="post-body">
+            <ul>
+                <li><span class="details_content"><a href="#device.model">device.name</a></span></li>
+                <li><span class="details_content"><a href="#device.phonegap">device.phonegap</a></span></li>
+                <li><span class="details_content"><a href="#device.platform">device.platform</a></span></li>
+                <li><span class="details_content"><a href="#device.uuid">device.uuid</a></span></li>
+                <li><span class="details_content"><a href="#device.version">device.version</a></span></li>
+            </ul>
+            <h2><a name="device.model">device.name</a></h2>
+            <p>获取设置名称</p>
+            <hr />
+            <pre class="prettyprint lang-html linenums">
+&lt;script type="text/javascript"&gt;
+// Android:    Nexus One       returns "Passion" (Nexus One code name)
+//             Motorola Droid  returns "voles"
+// BlackBerry: Torch 9800      returns "9800"
+// iOS:    All devices     returns either "iPhone", "iPod Touch", "iPhone Simulator", "iPad", "iPad Simulator"
+var name = device.name;
+ &lt;/script&gt;
+</pre>
+            <p>
+                <h3>说明：</h3>
+                device.name返回设备的型号或产品名称。这个值是由设备制造商设定，可能同一产品的不同版本之间有所不同。
+
+            </p>
+        </div>
+
+    </div>
+    <script>
+        p
+
+    </script>
+</body>
+</html>

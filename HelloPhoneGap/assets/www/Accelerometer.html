@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <title>Device</title>
+    </head>
+    <body>
+    	<h1>Accelerometer</h1>
+    	<h3>accelerometer.getCurrentAcceleration</h3>
+        <p id="getCurrentAcceleration">Loading device properties...</p>
+        
+        <h3>accelerometer.watchAcceleration</h3>
+        <p id="watchAcceleration">Loading device properties...</p>
+        <br/>
+        <button onclick="stopWatch();">Stop Watching</button>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript">
+            /*
+        	 * deviceready事件 设备初始化phonegap所有的API触发的事件
+        	 * 建议将所有的涉及到phonegap API的业务代码放到此事件的回调函数中,以免发生不必要的错误
+        	 */
+            document.addEventListener("deviceready", onDeviceReady, false);
+            
+            function onSuccess(acceleration) {
+                var element = document.getElementById('getCurrentAcceleration');
+                element.innerHTML = 'Acceleration X: ' + acceleration.x + '<br />' +
+					 'Acceleration Y: ' + acceleration.y + '<br />' +
+					 'Acceleration Z: ' + acceleration.z + '<br />' +
+					 'Timestamp: ' + acceleration.timestamp + '<br />';
+            };
+            function onError() {
+                alert('onError!');
+            };
+            //accelerometer.watchAcceleration
+            // The watch id references the current `watchAcceleration`
+            var watchID = null;
+            /* 调用加速器的时间间隔 单位毫秒*/
+            var options = { frequency: 1000 };
+            function onSuccess1(acceleration) {
+                var element = document.getElementById('watchAcceleration');
+                element.innerHTML = 'Acceleration X: ' + acceleration.x + '<br />' +
+		                            'Acceleration Y: ' + acceleration.y + '<br />' +
+		                            'Acceleration Z: ' + acceleration.z + '<br />' +
+		                            'Timestamp: ' + acceleration.timestamp + '<br />';
+            }
+            function onError1() {
+                alert('onError!');
+            }
+
+            //停止某个加速器监视 
+            function stopWatch() {
+                if (watchID) {
+                    navigator.accelerometer.clearWatch(watchID);
+                    watchID = null;
+                }
+            }
+            function onDeviceReady() {
+                /*
+		    	 * 相信大家一看success error就明白了这两个方法的作用.成功调用/产生错误
+		    	 * 第二个方法多一个参数是每隔多久去调用一次加速器
+		    	 */
+                
+                navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+                watchID = navigator.accelerometer.watchAcceleration(onSuccess1, onError1, options);
+            }
+        </script>
+    </body>
+</html>

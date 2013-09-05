@@ -8,21 +8,23 @@
     <script type="text/javascript" charset="utf-8">
         var rootPath;
         $(function () {
+
             document.addEventListener("deviceready", onDeviceReady, false);
             $("#getdic").bind("tap", function () {
-                var fullepTH = rootPath + "/developtemp";
-                alert(fullepTH);
-                var parentEntry = new DirectoryEntry({ fullPath: fullepTH });
-                alert(parentEntry.name) ;
+                var fullepTH = rootPath;
+                var parentEntry = new DirectoryEntry("developtemp", rootPath + "/developtemp");
+                alert(parentEntry.name);
                 var directoryReader = parentEntry.createReader();
                 //读取所有目录
                 // 获取目录中的所有条目
                 directoryReader.readEntries(function (entries) {
+                    alert(entries.length);
                     var i;
                     var html = "";
                     for (i = 0; i < entries.length; i++) {
                         html += "<li>" + entries[i].fullPath + "</li>";
                     }
+                    alert(html);
                     $("#disks").html(html);
                 }, function (error) {
                     alert("Failed to list directory contents:" + error.code);
